@@ -1,0 +1,31 @@
+[aws]
+aws_region_name = ap-northeast-2
+
+[cluster test]
+vpc_settings = testcfn
+key_name = <YOUR KEY NAME>
+initial_queue_size = 4
+max_queue_size = 4
+scheduler = slurm
+compute_instance_type=t2.medium
+cluster_type = spot
+spot_price = 1.20
+# ebs_settings = helloebs
+
+# to use EBS snapshot
+# [ebs helloebs]
+# ebs_snapshot_id = snap-<YOUR SNAPSHOT>
+
+
+[vpc testcfn]
+master_subnet_id = subnet-<YOUR SUBNET ID>
+vpc_id = vpc-<YOUR VPC ID>
+
+[global]
+update_check = true
+sanity_check = true
+cluster_template = test
+
+[aliases]
+ssh = ssh {CFN_USER}@{MASTER_IP} {ARGS}
+

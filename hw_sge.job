@@ -1,0 +1,9 @@
+#!/bin/sh
+#$ -cwd
+#$ -N helloworld
+#$ -pe mpi 4
+#$ -j y
+date
+module load mpi/openmpi-x86_64
+
+mpirun ./hw.x > hello_all.out

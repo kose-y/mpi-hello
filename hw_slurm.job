@@ -1,0 +1,20 @@
+#!/bin/sh
+#SBATCH --ntasks=8
+#SBATCH -N 4
+#SBATCH -t 00:30:00
+#SBATCH -J helloworld
+#SBATCH -o helloworld.%j.log
+
+P=4 # total MPI processes
+T=1 # number of threads per process
+PROG="./hw.x"
+OUTFILE="hw.out"
+
+
+hostname
+module load mpi/openmpi-x86_64
+date
+mpirun -np 8 hostname
+mpirun -np 8 ${PROG} > ${OUTFILE}
+#srun -n $P -c $T ${PROG} > ${OUTFILE}
+date
